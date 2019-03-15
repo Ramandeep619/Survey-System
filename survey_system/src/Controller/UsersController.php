@@ -20,8 +20,12 @@ class UsersController extends AppController
      */
     public function index()
     {
-        $users = $this->paginate($this->Users);
-
+		$this->set('title', 'Users');
+        $this->loadModel('Users');
+        $users = $this->Users->find()
+                ->where(['Users.role !=' => 'admin'])
+                ->all()->toArray();
+        
         $this->set(compact('users'));
     }
 
@@ -40,16 +44,16 @@ class UsersController extends AppController
 
         $this->set('user', $user);
     }
-    
+
     /**
      * login method
      */
     public function login()
     {
         if ($this->Auth->user()) {
-            $this->redirect(array('users' => false,'action' => 'dashboard'));            
+            $this->redirect(array('users' => false,'action' => 'dashboard'));
         }
-        
+
         if ($this->request->is('post')) { //pr($this->request->data);die;
             if($this->request->data('username') != 'admin') {
                     $this->Flash->error(__('Invalid username or password, try again'));
@@ -65,16 +69,16 @@ class UsersController extends AppController
 
         $this->viewBuilder()->setLayout('login');
         $this->set('title', 'Login');
-        
+
     }
-    
+
     public function dashboard()
     {
 	$userCount = 1;
         $this->set(compact('userCount'));
         //die('dashboard');
     }
-    
+
     public function logout() {
         $this->redirect($this->Auth->logout());
     }
@@ -86,17 +90,21 @@ class UsersController extends AppController
      */
     public function add()
     {
-        $user = $this->Users->newEntity();
-        if ($this->request->is('post')) {
-            $user = $this->Users->patchEntity($user, $this->request->getData());
-            if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
-
+        $this->loadModel('Users');
+        $User = $this->Users->newEntity();
+        if ($this->request->is('post')) {//
+            $User = $this->Users->patchEntity($User, $this->request->getData());
+            //pr($this->request->getData());die;
+            $User->pass = $this->request->data('password');
+           // pr($User);die;
+            if($this->Users->save($User)) {
+                $this->Flash->success(__('The User has been saved.'));
                 return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The user could not be saved. Please, try again.'));
+}
+            $this->Flash->error(__('The User could not be saved. Please, try again.'));
         }
-        $this->set(compact('user'));
+        $users = 1;
+        $this->set(compact('users'));
     }
 
     /**

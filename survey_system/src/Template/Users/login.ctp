@@ -8,7 +8,7 @@
 <?php } ?>
 <?php echo $this->Form->create('User', array('id' => 'UserLoginForm', 'novalidate' => 'novalidate')); ?>
 		<h3 class="form-title">Login to your account</h3>
-		
+
 		<div class="form-group">
 			<!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
 			<label class="control-label visible-ie8 visible-ie9">Username</label>
@@ -26,12 +26,12 @@
 		</div>
 		<div class="form-actions">
 			<label class="checkbox">
-			
+
 			<button type="submit" class="btn green-haze pull-right">
 			Login <i class="m-icon-swapright m-icon-white"></i>
 			</button>
 		</div>
-		
+
 	<?php echo $this->Form->end(); ?>
 
 <?php //echo $this->Html->script(array('timezone', 'cookies'), array('inline'=>false));

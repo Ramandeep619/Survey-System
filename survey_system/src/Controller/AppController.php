@@ -47,7 +47,7 @@ class AppController extends Controller
             'enableBeforeRedirect' => false,
         ]);
         $this->loadComponent('Flash');
-        
+
         $this->loadComponent('Auth', [
             'authenticate' => [
                 'Form' => [
@@ -56,10 +56,6 @@ class AppController extends Controller
                         'password' => 'password'
                     ]
                 ]
-            ],
-            'loginRedirect' => [
-                'controller' => 'Users',
-                'action' => 'dashboard'
             ],
             'loginAction' => [
                 'controller' => 'Users',
@@ -77,24 +73,57 @@ class AppController extends Controller
          */
         //$this->loadComponent('Security');
     }
-    
+
     public function isAuthorized($user = null)
     {
         return true;
     }
-    
+
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
-        
+
     }
-    
+
     public function beforeRender(Event $event)
     {
-        //$this->Auth->logout();
-        if ($this->Auth->user() && !$this->request->is('ajax')) {
-            $this->viewBuilder()->setLayout('inner');            
-        }
+		if(strpos($this->request->url, '.json') !== false) {
+			if($this->request->url == 'api/login.json') {
+                $this->loadModel('Users');
+                $hasher = new \Cake\Auth\DefaultPasswordHasher();
+                $users = $this->Users->find()
+                ->where(['Users.username' => $this->request->data('username'), 'Users.role' => 'user'])
+                ->first();
+                //pr($users);die;
+                if(!empty($users)) {
+                    if($hasher->check($this->request->data('password'), $users['password'])) {
+						$this->response->statusCode(200);
+                        $response['status'] = 'success';
+                        $response['data'] = $users;
+                    } else {
+						$this->response->statusCode(400);
+                        $response['status'] = 'error';
+                        $response['message'] = 'Invalid Username and password';
+					}
+                } else {
+					$this->response->statusCode(400);
+                    $response['status'] = 'error';
+                    $response['message'] = 'Invalid Username and password';
+                }
+            
+                //response
+                $this->set('response', $response);
+                $this->set('_serialize', array('response'));
+                
+                
+			}
+            
+        } else {
+			if ($this->Auth->user() && !$this->request->is('ajax')) {
+				$this->viewBuilder()->setLayout('inner');
+			}
+		}
+		
 
 
     }

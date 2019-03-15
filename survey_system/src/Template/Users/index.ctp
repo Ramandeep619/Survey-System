@@ -1,57 +1,74 @@
-<?php
-/**
- * @var \App\View\AppView $this
- * @var \App\Model\Entity\User[]|\Cake\Collection\CollectionInterface $users
- */
-?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New User'), ['action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="users index large-9 medium-8 columns content">
-    <h3><?= __('Users') ?></h3>
-    <table cellpadding="0" cellspacing="0">
-        <thead>
-            <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('username') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('password') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('pass') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('role') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('created') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($users as $user): ?>
-            <tr>
-                <td><?= $this->Number->format($user->id) ?></td>
-                <td><?= h($user->username) ?></td>
-                <td><?= h($user->password) ?></td>
-                <td><?= h($user->pass) ?></td>
-                <td><?= h($user->role) ?></td>
-                <td><?= h($user->created) ?></td>
-                <td><?= h($user->modified) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $user->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $user->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $user->id], ['confirm' => __('Are you sure you want to delete # {0}?', $user->id)]) ?>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
+<div class="page-bar">
+        <ul class="page-breadcrumb">
+                <li>
+                        <i class="fa fa-user"></i>
+                        Users
+                        <i class="fa fa-angle-right"></i>
+                </li>
+                <li>
+                        <a href="#">Listing</a>
+                        <i class="fa fa-angle-right"></i>
+                </li>
         </ul>
-        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
-    </div>
+        <div class="page-toolbar">
+			<div class="btn-group pull-right">
+				<?php echo $this->Html->link('Add New User', array('controller' => 'Users', 'action' => 'add'), array('class' => 'btn btn-fit-height grey-salt')); ?>
+			</div>
+		</div>
+					
+</div>
+<div class='panel-body'><?php 
+echo $this->Flash->render();
+?></div>
+<div class="contentpanel">   
+    
+    <br>
+    <div class="row">
+					<div class="col-md-12">
+						<!-- BEGIN SAMPLE TABLE PORTLET-->
+						<div class="portlet box red">
+							<div class="portlet-title">
+								<div class="caption">
+									<i class="fa fa-cogs"></i>Users
+								</div>
+								
+							</div>
+							<div class="portlet-body">
+								<div class="table-scrollable">
+									<table class="table" id="tableUsers">
+            <thead>
+                <tr>
+                    <th>S.No</th> 
+                    <th>Username</th>
+                    <th>Password</th>
+                    <th>Created</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php          
+                $Serial = 1;
+                $Listing = "";
+                if (is_array($users)) {
+                    foreach ($users as $user) { 
+                        $Listing .= '<tr class="gradeU">';
+                        $Listing .= '<td>' . $Serial++ . '</td>';
+                        $Listing .= '<td> ' . $user['username'] . '</td>';
+			$Listing .= '<td> ' . $user['pass'] . '</td>';
+                        $Listing .= '<td > ' . date_format($user['created'], "d-M-Y H:i A") . '</td>';
+                        $Listing .= '</tr>';
+                    }
+                } else {
+                    $Listing = "<tr><td></td><td>No Record to List</td><td></td><td></td><td></td></tr>";
+                }
+                echo $Listing;
+                ?> 
+            </tbody>
+        </table>
+								</div>
+							</div>
+						</div>
+						<!-- END SAMPLE TABLE PORTLET-->
+					</div>
+					
+				</div>
 </div>

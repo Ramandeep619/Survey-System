@@ -11,14 +11,20 @@
                 <!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
                 <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
                 <ul class="page-sidebar-menu page-sidebar-menu-hover-submenu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
-                        <li class="start active ">
-                                <a href="#">
+                        <li class="start <?php echo ($this->request->action == 'dashboard') ? 'active' : ''; ?> ">
+                                <a href="<?php echo $this->Url->build(array('controller' => 'users', 'action' => 'dashboard')); ?>">
                                 <i class="icon-home"></i>
                                 <span class="title">Dashboard</span>
                                 <span class="selected"></span>
                                 </a>
                         </li>
-                        
+                        <li <?php echo ($this->request->params['controller'] == 'Users' && $this->request->action == 'index') || ($this->request->params['controller'] == 'Users' && $this->request->action == 'add') ? 'class=active' : ''; ?>>
+							<a href="<?php echo $this->Url->build(array('controller' => 'users', 'action' => 'index')); ?>">
+								<i class="icon-user"></i>
+								<span class="title">Manage User</span>
+								<span class="arrow "></span>
+							</a>
+						</li>
                 </ul>
                 <!-- END SIDEBAR MENU -->
         </div>

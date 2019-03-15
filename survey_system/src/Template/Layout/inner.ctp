@@ -10,7 +10,7 @@
         <?php
         echo $this->Html->meta('icon');
 
-        echo $this->Html->css(array('font-awesome.min', 'simple-line-icons.min', 'bootstrap.min', 'uniform.default', 'bootstrap-switch.min',
+        echo $this->Html->css(array('font-awesome.min', 'jquery.datatables', 'simple-line-icons.min', 'bootstrap.min', 'uniform.default', 'bootstrap-switch.min',
             'layout', 'theme/custom', 'theme/layout', 'theme/light', 'components'));
 
         echo $this->fetch('meta');
@@ -34,7 +34,7 @@
 		<!-- BEGIN LOGO -->
 		<div class="page-logo">
 
-			<img src="/images/logo.jpeg" alt="logo" class="logo-default" style="width:100px;margin-top:5px;"/>
+			<img src="<?php echo $this->request->webroot . 'images/logo.jpeg'; ?>" alt="logo" class="logo-default" style="width:100px;margin-top:5px;"/>
 
 			<div class="menu-toggler sidebar-toggler">
 				<!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
@@ -113,7 +113,7 @@
 </div>
 <?php
 echo $this->Html->script(array('jquery.min', 'jquery-migrate.min', 'jquery-ui.min', 'bootstrap.min', 'bootstrap-hover-dropdown.min', 'jquery.slimscroll.min',
-        'jquery.blockui.min', 'jquery.uniform.min', 'bootstrap-switch.min', 'metronic', 'theme/layout'));
+        'jquery.blockui.min', 'jquery.uniform.min', 'bootstrap-switch.min', 'jquery.dataTables.min', 'jquery.validate.min', 'metronic', 'theme/layout'));
 
 
 echo $this->fetch('script');
