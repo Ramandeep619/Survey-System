@@ -18,10 +18,10 @@
                                 <span class="selected"></span>
                                 </a>
                         </li>
-                        <li <?php echo ($this->request->params['controller'] == 'Users' && $this->request->action == 'index') || ($this->request->params['controller'] == 'Users' && $this->request->action == 'add') ? 'class=active' : ''; ?>>
+                        <li <?php echo ($this->request->params['controller'] == 'Users' && $this->request->action == 'index' || $this->request->params['controller'] == 'UsersQuestions' && $this->request->action == 'index') || ($this->request->params['controller'] == 'Users' && $this->request->action == 'add') ? 'class=active' : ''; ?>>
 							<a href="<?php echo $this->Url->build(array('controller' => 'users', 'action' => 'index')); ?>">
 								<i class="icon-user"></i>
-								<span class="title">Manage User</span>
+								<span class="title">All Users</span>
 								<span class="arrow "></span>
 							</a>
 						</li>

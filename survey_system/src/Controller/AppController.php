@@ -117,7 +117,6 @@ class AppController extends Controller
                 
                 
 			}
-            
         } else {
 			if ($this->Auth->user() && !$this->request->is('ajax')) {
 				$this->viewBuilder()->setLayout('inner');

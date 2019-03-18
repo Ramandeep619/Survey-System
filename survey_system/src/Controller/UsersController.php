@@ -74,8 +74,11 @@ class UsersController extends AppController
 
     public function dashboard()
     {
-	$userCount = 1;
-        $this->set(compact('userCount'));
+        $this->loadModel('Users');
+        $this->loadModel('Questions');
+	$userCount = $this->Users->find()->where(['username !=' => 'admin'])->count();
+        $questionCount = $this->Questions->find()->count();
+        $this->set(compact('userCount', 'questionCount'));
         //die('dashboard');
     }
 

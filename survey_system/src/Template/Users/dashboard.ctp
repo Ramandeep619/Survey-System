@@ -14,9 +14,5 @@
 </div>
 	
 <div class="contentpanel">   
-    
-    
-		
-	
 </div>
 

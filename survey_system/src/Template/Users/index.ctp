@@ -12,7 +12,7 @@
         </ul>
         <div class="page-toolbar">
 			<div class="btn-group pull-right">
-				<?php echo $this->Html->link('Add New User', array('controller' => 'Users', 'action' => 'add'), array('class' => 'btn btn-fit-height grey-salt')); ?>
+				<?php echo $this->Html->link('Add', array('controller' => 'Users', 'action' => 'add'), array('class' => 'btn btn-fit-height grey-salt')); ?>
 			</div>
 		</div>
 					
@@ -42,6 +42,7 @@ echo $this->Flash->render();
                     <th>Username</th>
                     <th>Password</th>
                     <th>Created</th>
+                    <th>Questions</th>
                 </tr>
             </thead>
             <tbody>
@@ -53,8 +54,10 @@ echo $this->Flash->render();
                         $Listing .= '<tr class="gradeU">';
                         $Listing .= '<td>' . $Serial++ . '</td>';
                         $Listing .= '<td> ' . $user['username'] . '</td>';
-			$Listing .= '<td> ' . $user['pass'] . '</td>';
+						$Listing .= '<td> ' . $user['pass'] . '</td>';
                         $Listing .= '<td > ' . date_format($user['created'], "d-M-Y H:i A") . '</td>';
+                        $Listing .= "<td><a href = '".$this->Url->build
+                        (["controller" => "UsersQuestions","action" => "index",$user->id]). "'>View</a></td>";
                         $Listing .= '</tr>';
                     }
                 } else {
@@ -72,3 +75,16 @@ echo $this->Flash->render();
 					
 				</div>
 </div>
+<?php
+//echo $this->Html->script(array('businessunit'), array('block' => 'scriptBottom', 'inline' => false));
+$this->Html->scriptStart(['block' => true]);
+    echo "var bu_table = $('#tableUsers').dataTable({
+        sPaginationType: 'full_numbers',
+        aoColumnDefs: [
+            {bSortable: false, aTargets: [3,-1]},
+            {type: 'title-string', targets: 2 }
+        ]
+    });";
+       
+$this->Html->scriptEnd();
+?>
