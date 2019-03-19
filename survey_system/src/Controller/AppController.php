@@ -89,17 +89,16 @@ class AppController extends Controller
     {
 		if(strpos($this->request->url, '.json') !== false) {
 			if($this->request->url == 'api/login.json') {
+                // load user model
                 $this->loadModel('Users');
                 $hasher = new \Cake\Auth\DefaultPasswordHasher();
                 $users = $this->Users->find()
                 ->where(['Users.username' => $this->request->data('username'), 'Users.role' => 'user'])
                 ->first();
-                //pr($users);die;
                 if(!empty($users)) {
                     if($hasher->check($this->request->data('password'), $users['password'])) {
 						$this->response->statusCode(200);
                         $response['status'] = 'success';
-                        $response['data'] = $users;
                     } else {
 						$this->response->statusCode(400);
                         $response['status'] = 'error';
@@ -111,12 +110,10 @@ class AppController extends Controller
                     $response['message'] = 'Invalid Username and password';
                 }
             
-                //response
                 $this->set('response', $response);
                 $this->set('_serialize', array('response'));
-                
-                
 			}
+            
         } else {
 			if ($this->Auth->user() && !$this->request->is('ajax')) {
 				$this->viewBuilder()->setLayout('inner');
