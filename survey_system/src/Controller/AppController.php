@@ -113,6 +113,61 @@ class AppController extends Controller
                 $this->set('response', $response);
                 $this->set('_serialize', array('response'));
 			}
+			if($this->request->url == 'api/questions.json') {
+				$this->loadModel('Questions');
+				$question = $this->Questions->find()
+                ->all();//pr($question);die;
+                if(!empty($question)) {
+					$this->response->statusCode(200);
+					$response['status'] = 'success';
+					$response['data'] = $question;
+				}
+				$this->set('response', $response);
+                $this->set('_serialize', array('response'));
+				//echo json_encode($response);die;
+			}
+			if($this->request->url == 'api/users_questions.json' && $this->request->is('post')) {
+                $this->loadModel('UsersQuestions');
+                
+                $usersQuestion = $this->UsersQuestions->newEntity();
+                $usersQuestion = $this->UsersQuestions->patchEntity($usersQuestion, $this->request->getData());
+                //pr($usersQuestion);die;
+                $userquestion = TableRegistry::get('UsersQuestions');
+                
+                if ($userquestion->save($usersQuestion)) {
+					$this->response->statusCode(200);
+					$response['status'] = 'success';
+					$response['data'] = $usersQuestion;
+				} else {
+					$this->response->statusCode(400);
+					$response['status'] = 'error';
+                    $response['message'] = 'Something went wrong';
+				}
+
+                $this->set('response', $response);
+                $this->set('_serialize', array('response'));
+			}
+			if($this->request->url == 'api/users_questions.json' && $this->request->is('get')) {
+                
+                $this->loadModel('UsersQuestions');
+                $questions = $this->UsersQuestions->find('all')->where(['user_id' => $this->request->query['user_id']])->contain(['Questions'])
+                ->all();
+
+                $userQuestions = array();
+                // pr($questions);
+                foreach($questions as $row){
+                    $row["question"]["answer"] = $row["answer"];
+                    $userQuestions[] =  $row["question"];
+                }
+                $this->response->statusCode(200);
+                $response['status'] = 'success';
+                $response['data'] = $userQuestions;
+            
+                
+				//response
+                $this->set('response', $response);
+                $this->set('_serialize', array('response'));
+			}
             
         } else {
 			if ($this->Auth->user() && !$this->request->is('ajax')) {

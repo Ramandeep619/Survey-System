@@ -25,6 +25,13 @@
 								<span class="arrow "></span>
 							</a>
 						</li>
+						<li <?php echo ($this->request->params['controller'] == 'Questions' && $this->request->action == 'index') || ($this->request->params['controller'] == 'Questions' && $this->request->action == 'add') ? 'class=active' : ''; ?>>
+							<a href="<?php echo $this->Url->build(array('controller' => 'questions', 'action' => 'index')); ?>">
+								<i class="icon-question"></i>
+								<span class="title">All Questions</span>
+								<span class="arrow "></span>
+							</a>
+						</li>
                 </ul>
                 <!-- END SIDEBAR MENU -->
         </div>
