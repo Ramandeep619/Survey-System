@@ -74,45 +74,45 @@ echo $this->Flash->render();
             </div>
           <div id="ans_options" style="display:none;">
             <div class="form-group">
-                <label class="col-sm-2 control-label">Answer A<span class="asterisk">*</span></label>
+                <label class="col-sm-2 control-label">Option A<span class="asterisk">*</span></label>
                 <div class="col-sm-4">					
-                    <?= $this->Form->textarea('answer_A', array('placeholder' => 'Enter Answer A', 'label' => false, 'class' => 'form-control')); ?>
+                    <?= $this->Form->textarea('answer_A', array('placeholder' => 'Enter Option A', 'label' => false, 'class' => 'form-control')); ?>
                 </div>
-                <label class="col-sm-2 control-label">Answer B<span class="asterisk">*</span></label>
+                <label class="col-sm-2 control-label">Option B<span class="asterisk">*</span></label>
                 <div class="col-sm-4">
-                    <?= $this->Form->textarea('answer_B', array('placeholder' => 'Enter Answer B', 'label' => false, 'class' => 'form-control')); ?>
+                    <?= $this->Form->textarea('answer_B', array('placeholder' => 'Enter Option B', 'label' => false, 'class' => 'form-control')); ?>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-2 control-label">Answer C<span class="asterisk">*</span></label>
+                <label class="col-sm-2 control-label">Option C<span class="asterisk">*</span></label>
                 <div class="col-sm-4">
-                    <?= $this->Form->textarea('answer_C', array('placeholder' => 'Enter Answer C', 'label' => false, 'class' => 'form-control')); ?>
+                    <?= $this->Form->textarea('answer_C', array('placeholder' => 'Enter Option C', 'label' => false, 'class' => 'form-control')); ?>
                 </div>
-                <label class="col-sm-2 control-label">Answer D<span class="asterisk">*</span></label>
+                <label class="col-sm-2 control-label">Option D<span class="asterisk">*</span></label>
                 <div class="col-sm-4">
-                    <?= $this->Form->textarea('answer_D', array('placeholder' => 'Enter Answer D', 'label' => false, 'class' => 'form-control')); ?>
+                    <?= $this->Form->textarea('answer_D', array('placeholder' => 'Enter Option D', 'label' => false, 'class' => 'form-control')); ?>
                 </div>
             </div>
           </div>
           <div id="ans_checks" style="display:none;">
             <div class="form-group">
-                <label class="col-sm-2 control-label">Answer A<span class="asterisk">*</span></label>
+                <label class="col-sm-2 control-label">Option A<span class="asterisk">*</span></label>
                 <div class="col-sm-4">					
-                    <?= $this->Form->textarea('check_answer_A', array('placeholder' => 'Enter Answer A', 'label' => false, 'class' => 'form-control')); ?>
+                    <?= $this->Form->textarea('check_answer_A', array('placeholder' => 'Enter Option A', 'label' => false, 'class' => 'form-control')); ?>
                 </div>
-                <label class="col-sm-2 control-label">Answer B<span class="asterisk">*</span></label>
+                <label class="col-sm-2 control-label">Option B<span class="asterisk">*</span></label>
                 <div class="col-sm-4">
-                    <?= $this->Form->textarea('check_answer_B', array('placeholder' => 'Enter Answer B', 'label' => false, 'class' => 'form-control')); ?>
+                    <?= $this->Form->textarea('check_answer_B', array('placeholder' => 'Enter Option B', 'label' => false, 'class' => 'form-control')); ?>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-2 control-label">Answer C<span class="asterisk">*</span></label>
+                <label class="col-sm-2 control-label">Option C<span class="asterisk">*</span></label>
                 <div class="col-sm-4">
-                    <?= $this->Form->textarea('check_answer_C', array('placeholder' => 'Enter Answer C', 'label' => false, 'class' => 'form-control')); ?>
+                    <?= $this->Form->textarea('check_answer_C', array('placeholder' => 'Enter Option C', 'label' => false, 'class' => 'form-control')); ?>
                 </div>
-                <label class="col-sm-2 control-label">Answer D<span class="asterisk">*</span></label>
+                <label class="col-sm-2 control-label">Option D<span class="asterisk">*</span></label>
                 <div class="col-sm-4">
-                    <?= $this->Form->textarea('check_answer_D', array('placeholder' => 'Enter Answer D', 'label' => false, 'class' => 'form-control')); ?>
+                    <?= $this->Form->textarea('check_answer_D', array('placeholder' => 'Enter Option D', 'label' => false, 'class' => 'form-control')); ?>
                 </div>
             </div>
           </div>

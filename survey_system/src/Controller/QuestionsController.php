@@ -51,36 +51,36 @@ class QuestionsController extends AppController
         if ($this->request->is('post')) {            
 			if($this->request->data('answer_type') == 4){
 					if(empty($this->request->data('check_answer_A'))) {
-						$this->Flash->success(__('Please enter Answer A'));
+						$this->Flash->success(__('Please enter Option A'));
 						return $this->redirect(['action' => 'add']);
 					}
 					if(empty($this->request->data('check_answer_B'))) {
-						$this->Flash->success(__('Please enter Answer B'));
+						$this->Flash->success(__('Please enter Option B'));
 						return $this->redirect(['action' => 'add']);
 					}
 					if(empty($this->request->data('check_answer_C'))) {
-						$this->Flash->success(__('Please enter Answer C'));
+						$this->Flash->success(__('Please enter Option C'));
 						return $this->redirect(['action' => 'add']);
 					}
 					if(empty($this->request->data('check_answer_D'))) {
-						$this->Flash->success(__('Please enter Answer D'));
+						$this->Flash->success(__('Please enter Option D'));
 						return $this->redirect(['action' => 'add']);
 					}
-			} else {
+			} else if($this->request->data('answer_type') == 2) {
 					if(empty($this->request->data('answer_A'))) {
-						$this->Flash->success(__('Please enter Answer A'));
+						$this->Flash->success(__('Please enter Option A'));
 						return $this->redirect(['action' => 'add']);
 					}
 					if(empty($this->request->data('answer_B'))) {
-						$this->Flash->success(__('Please enter Answer B'));
+						$this->Flash->success(__('Please enter Option B'));
 						return $this->redirect(['action' => 'add']);
 					}
 					if(empty($this->request->data('answer_C'))) {
-						$this->Flash->success(__('Please enter Answer C'));
+						$this->Flash->success(__('Please enter Option C'));
 						return $this->redirect(['action' => 'add']);
 					}
 					if(empty($this->request->data('answer_D'))) {
-						$this->Flash->success(__('Please enter Answer D'));
+						$this->Flash->success(__('Please enter Option D'));
 						return $this->redirect(['action' => 'add']);
 					}
 				}
