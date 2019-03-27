@@ -42,11 +42,9 @@ echo $this->Flash->render();
             <thead>
                 <tr>
                     <th>S.No</th> 
-                    <th>User</th>
+                    <th>UserName</th>
                     <th>Question</th>                    
-                    <th>Actual Answer</th>
-                    <th>Given Answer</th>
-                    <!-- <th>Answer Result</th> -->
+                    <th>Answer</th>
                 </tr>
             </thead>
             <tbody>
@@ -59,26 +57,6 @@ echo $this->Flash->render();
                         $Listing .= '<td>' . $Serial++ . '</td>';
                         $Listing .= '<td> ' . $usersQuestion['user']['username'] . '</td>';
 						$Listing .= '<td> ' . $usersQuestion['question']['question'] . '</td>';
-
-                        if($usersQuestion['question']['answer_type'] == 1) {
-							$answer = $usersQuestion['question']['answer_manual'];
-						} else if($usersQuestion['question']['answer_type'] == 3) {
-							$answer = $usersQuestion['question']['answer_manual'];
-						} else if($usersQuestion['question']['answer_type'] == 4) {
-                            $answer = $usersQuestion['question']['answer_option'];
-                            $str_arr = explode (",", $answer); 
-                            $checkstring="";
-                            foreach($str_arr as $key=>$value)
-                            {
-                               $checkstring.= $usersQuestion['question']['answer_'.trim($value)] .", ";
-                            } 
-                            $checkstring = rtrim($checkstring, ', ');
-                            $answer = $checkstring;
-						} else {
-							$answer = $usersQuestion['question']['answer_'.$question->answer_option];
-                        }
-                        
-                        $Listing .= '<td> ' . $answer . '</td>';
                         $Listing .= '<td> ' . $usersQuestion['answer'] . '</td>';            
 
                         $Listing .= '</tr>';

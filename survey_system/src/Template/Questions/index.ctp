@@ -41,7 +41,6 @@ echo $this->Flash->render();
                     <th>S.No</th> 
                     <th>Question</th>
                     <th>Answer Type</th>
-                    <th>Answer</th>
                     <th>Created</th>
                     <th>Action</th>
                 </tr>
@@ -57,27 +56,14 @@ echo $this->Flash->render();
                         $Listing .= '<td> ' . $question->question . '</td>';
                         if($question->answer_type == 1) {
 							$answer_type = 'Manual';
-							$answer = $question->answer_manual;
 						} else if($question->answer_type == 3) {
 							$answer_type = 'Rating';
-							$answer = $question->answer_manual;
 						} else if($question->answer_type == 4) {
                             $answer_type = 'Multiple';
-                            $answer = $question->answer_option;
-                            $str_arr = explode (",", $answer); 
-                            $checkstring="";
-                            foreach($str_arr as $key=>$value)
-                            {
-                               $checkstring.= $question->{'answer_'.trim($value)} .", ";
-                            } 
-                            $checkstring = rtrim($checkstring, ', ');
-                            $answer = $checkstring;
 						} else {
 							$answer_type = 'Options';
-							$answer = $question->{'answer_'.$question->answer_option};
 						}
 						$Listing .= '<td> ' . $answer_type . '</td>';
-						$Listing .= '<td> ' . $answer . '</td>';
                         $Listing .= '<td > ' . date_format($question->created, "d-M-Y H:i A") . '</td>';
                         $Listing .= '<td > ' . $this->Html->link('<i class="glyphicon glyphicon-remove"></i>', array('action' => 'delete', $question->id), array('escape' => false)). '</td>';
                         $Listing .= '</tr>';

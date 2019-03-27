@@ -49,12 +49,7 @@ class QuestionsController extends AppController
     {
         $question = $this->Questions->newEntity();
         if ($this->request->is('post')) {            
-			if($this->request->data('answer_type') == 1 || $this->request->data('answer_type') == 3) {
-				if(empty($this->request->data('answer_manual'))) {
-					$this->Flash->success(__('Please enter Answer.'));
-					return $this->redirect(['action' => 'add']);
-				}
-			} else if($this->request->data('answer_type') == 4){
+			if($this->request->data('answer_type') == 4){
 					if(empty($this->request->data('check_answer_A'))) {
 						$this->Flash->success(__('Please enter Answer A'));
 						return $this->redirect(['action' => 'add']);
@@ -92,19 +87,12 @@ class QuestionsController extends AppController
 			
 			// pr($this->request->data);die;
             $question = $this->Questions->patchEntity($question, $this->request->getData());
-            if($question->answer_type == 1 || $question->answer_type == 3) {
-				$question->answer_option = '';
-			} else if($question->answer_type == 4){
-
-                $checkstring = implode(', ',$_POST['answer_options']);
-                $question->answer_option = $checkstring;
+            if($question->answer_type == 4){
                 $question->answer_A = $_POST['check_answer_A'];
                 $question->answer_B = $_POST['check_answer_B'];
                 $question->answer_C = $_POST['check_answer_C'];
                 $question->answer_D = $_POST['check_answer_D'];
-            }else{
-				$question->answer_manual = '';
-			}
+            }
             //pr($question);die;
             if ($this->Questions->save($question)) {
                 $this->Flash->success(__('The question has been saved.'));

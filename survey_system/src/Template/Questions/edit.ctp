@@ -23,13 +23,10 @@
         <?php
             echo $this->Form->control('question');
             echo $this->Form->control('answer_type');
-            echo $this->Form->control('answer_manual');
-            echo $this->Form->control('answer_option');
             echo $this->Form->control('answer_A');
             echo $this->Form->control('answer_B');
             echo $this->Form->control('answer_C');
             echo $this->Form->control('answer_D');
-            echo $this->Form->control('answer_E');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

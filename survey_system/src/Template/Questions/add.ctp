@@ -72,67 +72,25 @@ echo $this->Flash->render();
 				</div>
 									
             </div>
-            <div class="form-group" id="ans_manuals">
-                <label class="col-sm-2 control-label">Answer<span class="asterisk">*</span></label>
-                <div class="col-sm-10">
-                    <?= $this->Form->textarea('answer_manual', array('placeholder' => 'Enter Answer here', 'label' => false, 'class' => 'form-control')); ?>
-                </div>
-            </div>
           <div id="ans_options" style="display:none;">
             <div class="form-group">
                 <label class="col-sm-2 control-label">Answer A<span class="asterisk">*</span></label>
                 <div class="col-sm-4">					
                     <?= $this->Form->textarea('answer_A', array('placeholder' => 'Enter Answer A', 'label' => false, 'class' => 'form-control')); ?>
-                    <br>
-                    <div class="md-radio" style="color:purple;">
-						<input type="radio" id="answer_A" value="A" name="answer_option" class="md-radiobtn" checked>
-						<label for="answer_A">
-						<span></span>
-						<span class="check"></span>
-						<span class="box"></span>
-						Tick Correct Answer </label>
-					</div>
                 </div>
                 <label class="col-sm-2 control-label">Answer B<span class="asterisk">*</span></label>
                 <div class="col-sm-4">
                     <?= $this->Form->textarea('answer_B', array('placeholder' => 'Enter Answer B', 'label' => false, 'class' => 'form-control')); ?>
-                    <br>
-                    <div class="md-radio" style="color:purple;">
-						<input type="radio" id="answer_B" value="B" name="answer_option" class="md-radiobtn">
-						<label for="answer_B">
-						<span></span>
-						<span class="check"></span>
-						<span class="box"></span>
-						Tick Correct Answer </label>
-					</div>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">Answer C<span class="asterisk">*</span></label>
                 <div class="col-sm-4">
                     <?= $this->Form->textarea('answer_C', array('placeholder' => 'Enter Answer C', 'label' => false, 'class' => 'form-control')); ?>
-                    <br>
-                    <div class="md-radio" style="color:purple;">
-						<input type="radio" id="answer_C" value="C" name="answer_option" class="md-radiobtn">
-						<label for="answer_C">
-						<span></span>
-						<span class="check"></span>
-						<span class="box"></span>
-						Tick Correct Answer </label>
-					</div>
                 </div>
                 <label class="col-sm-2 control-label">Answer D<span class="asterisk">*</span></label>
                 <div class="col-sm-4">
                     <?= $this->Form->textarea('answer_D', array('placeholder' => 'Enter Answer D', 'label' => false, 'class' => 'form-control')); ?>
-                    <br>
-                    <div class="md-radio" style="color:purple;">
-						<input type="radio" id="answer_D" value="D" name="answer_option" class="md-radiobtn">
-						<label for="answer_D">
-						<span></span>
-						<span class="check"></span>
-						<span class="box"></span>
-						Tick Correct Answer </label>
-					</div>
                 </div>
             </div>
           </div>
@@ -141,44 +99,20 @@ echo $this->Flash->render();
                 <label class="col-sm-2 control-label">Answer A<span class="asterisk">*</span></label>
                 <div class="col-sm-4">					
                     <?= $this->Form->textarea('check_answer_A', array('placeholder' => 'Enter Answer A', 'label' => false, 'class' => 'form-control')); ?>
-                    <br>
-                    <div class="checkbox" style="color:purple;">
-						<input type="checkbox" id="multi_answer_A" value="A" name="answer_options[]" class="md-radiobtn" checked>
-						<label for="multi_answer_A">
-						Tick Correct Answer </label>
-					</div>
                 </div>
                 <label class="col-sm-2 control-label">Answer B<span class="asterisk">*</span></label>
                 <div class="col-sm-4">
                     <?= $this->Form->textarea('check_answer_B', array('placeholder' => 'Enter Answer B', 'label' => false, 'class' => 'form-control')); ?>
-                    <br>
-                    <div class="checkbox" style="color:purple;">
-						<input type="checkbox" id="multi_answer_B" value="B" name="answer_options[]" class="md-radiobtn">
-						<label for="multi_answer_B">
-						Tick Correct Answer </label>
-					</div>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">Answer C<span class="asterisk">*</span></label>
                 <div class="col-sm-4">
                     <?= $this->Form->textarea('check_answer_C', array('placeholder' => 'Enter Answer C', 'label' => false, 'class' => 'form-control')); ?>
-                    <br>
-                    <div class="checkbox" style="color:purple;">
-						<input type="checkbox" id="multi_answer_C" value="C" name="answer_options[]" class="md-radiobtn">
-						<label for="multi_answer_C">
-						Tick Correct Answer </label>
-					</div>
                 </div>
                 <label class="col-sm-2 control-label">Answer D<span class="asterisk">*</span></label>
                 <div class="col-sm-4">
                     <?= $this->Form->textarea('check_answer_D', array('placeholder' => 'Enter Answer D', 'label' => false, 'class' => 'form-control')); ?>
-                    <br>
-                    <div class="checkbox" style="color:purple;">
-						<input type="checkbox" id="multi_answer_D" value="D" name="answer_options[]" class="md-radiobtn">
-						<label for="multi_answer_D">
-						Tick Correct Answer </label>
-					</div>
                 </div>
             </div>
           </div>

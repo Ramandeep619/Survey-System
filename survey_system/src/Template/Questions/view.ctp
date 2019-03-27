@@ -17,10 +17,6 @@
     <h3><?= h($question->id) ?></h3>
     <table class="vertical-table">
         <tr>
-            <th scope="row"><?= __('Answer Option') ?></th>
-            <td><?= h($question->answer_option) ?></td>
-        </tr>
-        <tr>
             <th scope="row"><?= __('Answer A') ?></th>
             <td><?= h($question->answer_A) ?></td>
         </tr>
@@ -35,10 +31,6 @@
         <tr>
             <th scope="row"><?= __('Answer D') ?></th>
             <td><?= h($question->answer_D) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Answer E') ?></th>
-            <td><?= h($question->answer_E) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Id') ?></th>
@@ -60,9 +52,5 @@
     <div class="row">
         <h4><?= __('Question') ?></h4>
         <?= $this->Text->autoParagraph(h($question->question)); ?>
-    </div>
-    <div class="row">
-        <h4><?= __('Answer Manual') ?></h4>
-        <?= $this->Text->autoParagraph(h($question->answer_manual)); ?>
     </div>
 </div>

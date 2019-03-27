@@ -63,15 +63,6 @@ class QuestionsTable extends Table
             ->allowEmptyString('answer_type', false);
 
         $validator
-            ->scalar('answer_manual')
-            ->allowEmptyString('answer_manual');
-
-        $validator
-            ->scalar('answer_option')
-            ->maxLength('answer_option', 10)
-            ->allowEmptyString('answer_option');
-
-        $validator
             ->scalar('answer_A')
             ->maxLength('answer_A', 255)
             ->allowEmptyString('answer_A');

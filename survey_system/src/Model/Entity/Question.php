@@ -9,13 +9,10 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property string $question
  * @property int $answer_type
- * @property string|null $answer_manual
- * @property string|null $answer_option
  * @property string|null $answer_A
  * @property string|null $answer_B
  * @property string|null $answer_C
  * @property string|null $answer_D
- * @property string|null $answer_E
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
  */
@@ -34,8 +31,6 @@ class Question extends Entity
     protected $_accessible = [
         'question' => true,
         'answer_type' => true,
-        'answer_manual' => true,
-        'answer_option' => true,
         'answer_A' => true,
         'answer_B' => true,
         'answer_C' => true,
