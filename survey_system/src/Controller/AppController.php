@@ -128,21 +128,17 @@ class AppController extends Controller
 			}
 			if($this->request->url == 'api/users_questions.json' && $this->request->is('post')) {
                 $this->loadModel('UsersQuestions');
-                
+                $data_array = $this->request->getData();
+
+                foreach ($data_array as $entity) {
                 $usersQuestion = $this->UsersQuestions->newEntity();
-                $usersQuestion = $this->UsersQuestions->patchEntity($usersQuestion, $this->request->getData());
-                //pr($usersQuestion);die;
+                $usersQuestion = $this->UsersQuestions->patchEntity($usersQuestion, $entity);
                 $userquestion = TableRegistry::get('UsersQuestions');
-                
-                if ($userquestion->save($usersQuestion)) {
-					$this->response->statusCode(200);
-					$response['status'] = 'success';
-					$response['data'] = $usersQuestion;
-				} else {
-					$this->response->statusCode(400);
-					$response['status'] = 'error';
-                    $response['message'] = 'Something went wrong';
-				}
+                $userquestion->save($usersQuestion);
+                }
+
+                $this->response->statusCode(200);
+                $response['status'] = 'success';
 
                 $this->set('response', $response);
                 $this->set('_serialize', array('response'));
