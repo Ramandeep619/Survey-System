@@ -1,8 +1,14 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ * @var \App\Model\Entity\UsersQuestion[]|\Cake\Collection\CollectionInterface $usersQuestions
+ */
+?>
 <div class="page-bar">
         <ul class="page-breadcrumb">
                 <li>
                         <i class="fa fa-user"></i>
-                        Users
+                        User Questions
                         <i class="fa fa-angle-right"></i>
                 </li>
                 <li>
@@ -10,14 +16,11 @@
                         <i class="fa fa-angle-right"></i>
                 </li>
         </ul>
-        <div class="page-toolbar">
-			<div class="btn-group pull-right">
-				<?php echo $this->Html->link('Add', array('controller' => 'Users', 'action' => 'add'), array('class' => 'btn btn-fit-height grey-salt')); ?>
-			</div>
-		</div>
+        
 					
 </div>
 <div class='panel-body'><?php 
+
 echo $this->Flash->render();
 ?></div>
 <div class="contentpanel">   
@@ -29,7 +32,7 @@ echo $this->Flash->render();
 						<div class="portlet box red">
 							<div class="portlet-title">
 								<div class="caption">
-									<i class="fa fa-cogs"></i>Users
+									<i class="fa fa-cogs"></i>User Questions List
 								</div>
 								
 							</div>
@@ -39,25 +42,23 @@ echo $this->Flash->render();
             <thead>
                 <tr>
                     <th>S.No</th> 
-                    <th>Username</th>
-                    <th>Password</th>
-                    <th>Created</th>
-                    <th>Questions</th>
+                    <th>UserName</th>
+                    <th>Question</th>                    
+                    <th>Answer</th>
                 </tr>
             </thead>
             <tbody>
                 <?php          
                 $Serial = 1;
                 $Listing = "";
-                if (is_array($users)) {
-                    foreach ($users as $user) { 
+                if (is_array($usersSurveysquestions)) {
+                    foreach ($usersSurveysquestions as $usersQuestion) { 
                         $Listing .= '<tr class="gradeU">';
                         $Listing .= '<td>' . $Serial++ . '</td>';
-                        $Listing .= '<td> ' . $user['username'] . '</td>';
-						$Listing .= '<td> ' . $user['pass'] . '</td>';
-                        $Listing .= '<td > ' . date_format($user['created'], "d-M-Y H:i A") . '</td>';
-                        $Listing .= "<td><a href = '".$this->Url->build
-                        (["controller" => "UsersSurveysquestions","action" => "index",$user->id]). "'>View</a></td>";
+                        $Listing .= '<td> ' . $usersQuestion['user']['username'] . '</td>';
+						$Listing .= '<td> ' . $usersQuestion['surveysquestion']['question'] . '</td>';
+                        $Listing .= '<td> ' . $usersQuestion['answer'] . '</td>';            
+
                         $Listing .= '</tr>';
                     }
                 } else {

@@ -1,8 +1,8 @@
 <div class="page-bar">
         <ul class="page-breadcrumb">
                 <li>
-                        <i class="fa fa-user"></i>
-                        Users
+                        <i class="icon-layers"></i>
+                        Surveys
                         <i class="fa fa-angle-right"></i>
                 </li>
                 <li>
@@ -12,7 +12,7 @@
         </ul>
         <div class="page-toolbar">
 			<div class="btn-group pull-right">
-				<?php echo $this->Html->link('Add', array('controller' => 'Users', 'action' => 'add'), array('class' => 'btn btn-fit-height grey-salt')); ?>
+				<?php echo $this->Html->link('Add', array('controller' => 'Surveys', 'action' => 'add'), array('class' => 'btn btn-fit-height grey-salt')); ?>
 			</div>
 		</div>
 					
@@ -29,7 +29,7 @@ echo $this->Flash->render();
 						<div class="portlet box red">
 							<div class="portlet-title">
 								<div class="caption">
-									<i class="fa fa-cogs"></i>Users
+									<i class="icon-layers"></i>Surveys
 								</div>
 								
 							</div>
@@ -39,25 +39,20 @@ echo $this->Flash->render();
             <thead>
                 <tr>
                     <th>S.No</th> 
-                    <th>Username</th>
-                    <th>Password</th>
-                    <th>Created</th>
-                    <th>Questions</th>
+                    <th>Title</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
                 <?php          
                 $Serial = 1;
                 $Listing = "";
-                if (is_array($users)) {
-                    foreach ($users as $user) { 
+                if (!empty($surveys)) {
+                    foreach ($surveys as $survey) { 
                         $Listing .= '<tr class="gradeU">';
                         $Listing .= '<td>' . $Serial++ . '</td>';
-                        $Listing .= '<td> ' . $user['username'] . '</td>';
-						$Listing .= '<td> ' . $user['pass'] . '</td>';
-                        $Listing .= '<td > ' . date_format($user['created'], "d-M-Y H:i A") . '</td>';
-                        $Listing .= "<td><a href = '".$this->Url->build
-                        (["controller" => "UsersSurveysquestions","action" => "index",$user->id]). "'>View</a></td>";
+                        $Listing .= '<td> ' . $survey->title . '</td>';
+                        $Listing .= '<td > ' . $this->Html->link('<i class="glyphicon glyphicon-remove"></i>', array('action' => 'delete', $survey->id), array('escape' => false)). '</td>';
                         $Listing .= '</tr>';
                     }
                 } else {

@@ -88,7 +88,7 @@ class AppController extends Controller
     public function beforeRender(Event $event)
     {
 		if(strpos($this->request->url, '.json') !== false) {
-			if($this->request->url == 'api/login.json') {
+			if($this->request->url == 'api/login.json' && $this->request->is('post')) {
                 // load user model
                 $this->loadModel('Users');
                 $hasher = new \Cake\Auth\DefaultPasswordHasher();
@@ -99,6 +99,7 @@ class AppController extends Controller
                     if($hasher->check($this->request->data('password'), $users['password'])) {
 						$this->response->statusCode(200);
                         $response['status'] = 'success';
+                        $response['user_id'] = $users["id"];
                     } else {
 						$this->response->statusCode(400);
                         $response['status'] = 'error';
@@ -113,9 +114,22 @@ class AppController extends Controller
                 $this->set('response', $response);
                 $this->set('_serialize', array('response'));
 			}
-			if($this->request->url == 'api/questions.json') {
-				$this->loadModel('Questions');
-				$question = $this->Questions->find()
+			if($this->request->url == 'api/surveys.json' && $this->request->is('get')) {
+				$this->loadModel('Surveys');
+				$question = $this->Surveys->find()
+                ->all();//pr($question);die;
+                if(!empty($question)) {
+					$this->response->statusCode(200);
+					$response['status'] = 'success';
+					$response['data'] = $question;
+				}
+				$this->set('response', $response);
+                $this->set('_serialize', array('response'));
+				//echo json_encode($response);die;
+			}
+			if($this->request->url == 'api/questions.json' && $this->request->is('get')) {
+				$this->loadModel('Surveysquestions');
+				$question = $this->Surveysquestions->find()->where(['survey_id' => $this->request->query['survey_id']])
                 ->all();//pr($question);die;
                 if(!empty($question)) {
 					$this->response->statusCode(200);
@@ -127,13 +141,13 @@ class AppController extends Controller
 				//echo json_encode($response);die;
 			}
 			if($this->request->url == 'api/users_questions.json' && $this->request->is('post')) {
-                $this->loadModel('UsersQuestions');
+                $this->loadModel('UsersSurveysquestions');
                 $data_array = $this->request->getData();
 
                 foreach ($data_array as $entity) {
-                $usersQuestion = $this->UsersQuestions->newEntity();
-                $usersQuestion = $this->UsersQuestions->patchEntity($usersQuestion, $entity);
-                $userquestion = TableRegistry::get('UsersQuestions');
+                $usersQuestion = $this->UsersSurveysquestions->newEntity();
+                $usersQuestion = $this->UsersSurveysquestions->patchEntity($usersQuestion, $entity);
+                $userquestion = TableRegistry::get('UsersSurveysquestions');
                 $userquestion->save($usersQuestion);
                 }
 
@@ -145,15 +159,15 @@ class AppController extends Controller
 			}
 			if($this->request->url == 'api/users_questions.json' && $this->request->is('get')) {
                 
-                $this->loadModel('UsersQuestions');
-                $questions = $this->UsersQuestions->find('all')->where(['user_id' => $this->request->query['user_id']])->contain(['Questions'])
+                $this->loadModel('UsersSurveysquestions');
+                $questions = $this->UsersSurveysquestions->find('all')->where(['user_id' => $this->request->query['user_id']])->contain(['Surveysquestions'])
                 ->all();
 
                 $userQuestions = array();
-                // pr($questions);
+                // pr($questions);die;
                 foreach($questions as $row){
-                    $row["question"]["answer"] = $row["answer"];
-                    $userQuestions[] =  $row["question"];
+                    $row["surveysquestion"]["answer"] = $row["answer"];
+                    $userQuestions[] =  $row["surveysquestion"];
                 }
                 $this->response->statusCode(200);
                 $response['status'] = 'success';
